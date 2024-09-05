@@ -2,9 +2,8 @@ import pygame
 import sys
 
 
-from scripts.main_functions import draw_grid, draw_agent, draw_button, get_grid_position
-from scripts.main_variables import (screen_s, ROWS, COLS, CELL_SIZE, MARGIN_ROWS, WINDOW_HEIGHT, WINDOW_WIDTH, BUTTON_SIZE,
-    BACKGROUND_COLOR, GRID_COLOR, AGENT_COLOR, BUTTON_COLOR, BUTTON_CLICK_COLOR, BUTTON_TEXT_COLOR)
+from scripts.main_functions import *
+from scripts.main_variables import *
 
 screen = screen_s
 

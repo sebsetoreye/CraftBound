@@ -2,9 +2,7 @@
 import pygame
 import sys
 
-from scripts.main_variables import (screen_s, ROWS, COLS, CELL_SIZE, MARGIN_ROWS, WINDOW_HEIGHT, WINDOW_WIDTH, BUTTON_SIZE,
-    BACKGROUND_COLOR, GRID_COLOR, AGENT_COLOR, BUTTON_COLOR, BUTTON_CLICK_COLOR, BUTTON_TEXT_COLOR)
-
+from scripts.main_variables import *
 
 
 # Function to draw the grid
