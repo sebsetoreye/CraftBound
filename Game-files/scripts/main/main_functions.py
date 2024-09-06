@@ -2,7 +2,7 @@
 import pygame
 import sys
 
-from scripts.main_variables import *
+from scripts.main.main_variables import *
 
 
 # Function to draw the grid
