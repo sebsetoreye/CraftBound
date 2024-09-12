@@ -2,18 +2,23 @@ import pygame
 import sys
 
 
-from scripts.main.main_functions import *
-from scripts.main.main_variables import *
+from .game_functions import *
+from .game_variables import *
+
+pygame.init()
+
+
 
 
 # Main function
 def main():
+    change_screen_size()
     x, y = 5, 10  # Starting position of the agent
     output1 = 0   # Generic output label
 
     # Button positions
-    button_quit_rect = pygame.Rect(WINDOW_WIDTH - BUTTON_SIZE * 2 - 10, 5, BUTTON_SIZE, BUTTON_SIZE)
-    button_b_rect = pygame.Rect(WINDOW_WIDTH - BUTTON_SIZE - 5, 5, BUTTON_SIZE, BUTTON_SIZE)
+    button_quit_rect = pygame.Rect(new_WINDOW_WIDTH - BUTTON_SIZE * 2 - 10, 5, BUTTON_SIZE, BUTTON_SIZE)
+    button_b_rect = pygame.Rect(new_WINDOW_WIDTH - BUTTON_SIZE - 5, 5, BUTTON_SIZE, BUTTON_SIZE)
 
     # Main game loop
     while True:
@@ -37,7 +42,7 @@ def main():
 
         # Display instructions at the bottom margin
         controls_text = font.render('Use Arrow Keys to Move or Click to Interact', True, (255, 255, 255))
-        screen.blit(controls_text, (5, WINDOW_HEIGHT - CELL_SIZE + 5))
+        screen.blit(controls_text, (5, new_WINDOW_HEIGHT - CELL_SIZE + 5))
 
         pygame.display.flip()
 

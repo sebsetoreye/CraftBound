@@ -1,13 +1,20 @@
 import pygame
 import sys
 
-from scripts.main.main_variables import *
-from scripts.main.main_functions import *
-
+from .start_screen_variables import *
+from .start_screen_functions import *
 
 pygame.init()
 
-screen = screen_start
 
 def start_screen():
-    print("test")
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:  # Enter key pressed
+                    return
+        
+        draw_start_screen()
