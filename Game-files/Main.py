@@ -11,7 +11,7 @@ pygame.init()
 
 
 #Running the game
-start_screen()
+#start_screen()
 
 
 

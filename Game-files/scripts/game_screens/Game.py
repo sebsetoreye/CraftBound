@@ -13,17 +13,22 @@ pygame.init()
 # Main function
 def main():
     change_screen_size()
-    x, y = 5, 10  # Starting position of the agent
+    player_x, player_y = 5, 5  # Starting position of the agent
     output1 = 0   # Generic output label
 
     # Button positions
     button_quit_rect = pygame.Rect(new_WINDOW_WIDTH - BUTTON_SIZE * 2 - 10, 5, BUTTON_SIZE, BUTTON_SIZE)
     button_b_rect = pygame.Rect(new_WINDOW_WIDTH - BUTTON_SIZE - 5, 5, BUTTON_SIZE, BUTTON_SIZE)
+    
+    
+
 
     # Main game loop
     while True:
         draw_grid()
-        draw_agent(x, y)
+        
+        draw_agent(player_x, player_y)
+        draw_room(0, 0, 40, 15)
 
         # Display Output1 at the top margin
         font = pygame.font.SysFont(None, 24)
@@ -52,14 +57,21 @@ def main():
                 pygame.quit()
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
+                new_x, new_y = player_x, player_y
                 if event.key == pygame.K_LEFT:
-                    y = max(0, y - 1)
+                    new_y = max(0, player_y - 1)
                 elif event.key == pygame.K_RIGHT:
-                    y = min(COLS - 1, y + 1)
+                    new_y = min(COLS - 1, player_y + 1)
                 elif event.key == pygame.K_UP:
-                    x = max(0, x - 1)
+                    new_x = max(0, player_x - 1)
                 elif event.key == pygame.K_DOWN:
-                    x = min(ROWS - 1, x + 1)
+                    new_x = min(ROWS - 1, player_x + 1)
+
+                # Check for collision before moving
+                if not is_collision(new_x, new_y):
+                    player_x, player_y = new_x, new_y
+                    
+
 
             # Handle mouse click events
             elif event.type == pygame.MOUSEBUTTONDOWN:

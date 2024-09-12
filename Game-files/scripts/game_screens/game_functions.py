@@ -46,3 +46,24 @@ def draw_button(text, x, y, size, is_clicked):
     text_render = font.render(text, True, BUTTON_TEXT_COLOR)
     text_rect = text_render.get_rect(center=(x + size // 2, y + size // 2))
     screen.blit(text_render, text_rect)
+
+
+
+# Function to draw the wall
+def draw_wall(x, y):
+    rect = pygame.Rect(y * CELL_SIZE, (x + MARGIN_ROWS) * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+    pygame.draw.rect(screen, Wall_Color, rect)
+    walls.append((x, y))  # Add wall to the list
+
+
+def draw_room(start_x, start_y, width, height):
+    for x in range(start_x, start_x + width):
+        draw_wall(start_y, x)  # Top wall
+        draw_wall(start_y + height - 1, x)  # Bottom wall
+    for y in range(start_y, start_y + height):
+        draw_wall(y, start_x)  # Left wall
+        draw_wall(y, start_x + width - 1)  # Right wall
+
+
+def is_collision(x, y):
+    return (x, y) in walls
