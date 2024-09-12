@@ -4,6 +4,7 @@ import sys
 
 from .game_functions import *
 from .game_variables import *
+from .rooms.room1 import *
 
 pygame.init()
 
@@ -28,7 +29,7 @@ def main():
         draw_grid()
         
         draw_agent(player_x, player_y)
-        draw_room(0, 0, 40, 15)
+        room_1()
 
         # Display Output1 at the top margin
         font = pygame.font.SysFont(None, 24)
