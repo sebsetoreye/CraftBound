@@ -1,8 +1,8 @@
 import pygame
 import sys
 
-from .start_screen_variables import *
-from .start_screen_functions import *
+from scripts.gui_screens.start_screen_files.start_screen_variables import *
+from scripts.gui_screens.start_screen_files.start_screen_functions import *
 
 pygame.init()
 

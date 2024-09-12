@@ -4,17 +4,16 @@ import sys
 
 from .game_functions import *
 from .game_variables import *
-from .rooms.room1 import *
+from .rooms.rooms import *
 
 pygame.init()
-
 
 
 
 # Main function
 def main():
     change_screen_size()
-    player_x, player_y = 5, 5  # Starting position of the agent
+    player_x, player_y = 7, 19  # Starting position of the agent
     output1 = 0   # Generic output label
 
     # Button positions
@@ -29,7 +28,7 @@ def main():
         draw_grid()
         
         draw_agent(player_x, player_y)
-        room_1()
+        start_room()
 
         # Display Output1 at the top margin
         font = pygame.font.SysFont(None, 24)

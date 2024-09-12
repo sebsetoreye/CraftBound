@@ -3,7 +3,7 @@ import pygame
 import sys
 
 from .game_variables import *
-from scripts.gui_screens.start_screen_variables import *
+from scripts.gui_screens.start_screen_files.start_screen_variables import *
 
 
 
@@ -63,6 +63,18 @@ def draw_room(start_x, start_y, width, height):
     for y in range(start_y, start_y + height):
         draw_wall(y, start_x)  # Left wall
         draw_wall(y, start_x + width - 1)  # Right wall
+
+
+
+
+
+def Draw_wall_horizontal(start_x, end_x, y_pos):
+    for x in range(start_x, start_x + end_x):
+        draw_wall(y_pos, x)
+
+def Draw_wall_vertical(start_y, end_y, x_pos):
+    for y in range(start_y, start_y + end_y):
+        draw_wall(y, x_pos)  
 
 
 def is_collision(x, y):
