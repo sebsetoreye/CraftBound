@@ -1,39 +1,45 @@
 import pygame
 import sys
-
+import random
 
 from .game_functions import *
 from .game_variables import *
 from .rooms.rooms import *
+from scripts.Global.global_functions import *
+from scripts.Global.global_variables import *
+from scripts.Global.global_enemies import *
 
 pygame.init()
-
 
 
 # Main function
 def main():
     change_screen_size()
-    player_x, player_y = 7, 19  # Starting position of the agent
+    frame_counter = 0
+    
     output1 = 0   # Generic output label
 
     # Button positions
     button_quit_rect = pygame.Rect(new_WINDOW_WIDTH - BUTTON_SIZE * 2 - 10, 5, BUTTON_SIZE, BUTTON_SIZE)
     button_b_rect = pygame.Rect(new_WINDOW_WIDTH - BUTTON_SIZE - 5, 5, BUTTON_SIZE, BUTTON_SIZE)
     
-    
+    player_x, player_y = 7, 19
+    enemy_x, enemy_y = random.randint(0, ROWS - 1), random.randint(0, COLS - 1)  # Random enemy start position
 
 
     # Main game loop
     while True:
         draw_grid()
-        
-        draw_agent(player_x, player_y)
-        start_room()
+        frame_counter += 1
 
-        # Display Output1 at the top margin
-        font = pygame.font.SysFont(None, 24)
-        output_text = font.render(f'Output1: {output1}', True, (255, 255, 255))
-        screen.blit(output_text, (5, 5))
+        if frame_counter % enemy_move_delay == 0:
+            enemy_x, enemy_y = move_enemy_towards_player(enemy_x, enemy_y, player_x, player_y)
+
+        # Draw player and enemy
+        draw_agent(player_x, player_y)  # Draw player
+        draw_enemy(enemy_x, enemy_y)    # Draw enemy
+
+        dev_room()
 
         # Check if buttons are clicked
         mouse_pressed = pygame.mouse.get_pressed()
@@ -45,9 +51,8 @@ def main():
         draw_button('Quit', button_quit_rect.x, button_quit_rect.y, BUTTON_SIZE, is_button_quit_clicked)
         draw_button('B', button_b_rect.x, button_b_rect.y, BUTTON_SIZE, is_button_b_clicked)
 
-        # Display instructions at the bottom margin
-        controls_text = font.render('Use Arrow Keys to Move or Click to Interact', True, (255, 255, 255))
-        screen.blit(controls_text, (5, new_WINDOW_HEIGHT - CELL_SIZE + 5))
+
+        # Move the enemy toward the player
 
         pygame.display.flip()
 
@@ -70,11 +75,10 @@ def main():
                 # Check for collision before moving
                 if not is_collision(new_x, new_y):
                     player_x, player_y = new_x, new_y
-                    
-
 
             # Handle mouse click events
             elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
                 if button_quit_rect.collidepoint(mouse_pos):
                     print("Button A clicked!")
                 elif button_b_rect.collidepoint(mouse_pos):
@@ -84,5 +88,7 @@ def main():
                 if grid_pos:
                     gx, gy = grid_pos
                     print(f"Grid {gx},{gy} clicked")
+
+        pygame.display.flip()  # Update screen
 
         pygame.time.delay(100)  # Control the speed of movement

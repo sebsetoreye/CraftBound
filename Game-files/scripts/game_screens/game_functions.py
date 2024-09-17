@@ -1,10 +1,11 @@
 
 import pygame
 import sys
+import math
 
 from .game_variables import *
 from scripts.gui_screens.start_screen_files.start_screen_variables import *
-
+from scripts.Global.global_functions import *
 
 
 
@@ -28,6 +29,8 @@ def draw_agent(x, y):
     rect = pygame.Rect(y * CELL_SIZE, (x + MARGIN_ROWS) * CELL_SIZE, CELL_SIZE, CELL_SIZE)
     pygame.draw.rect(screen, AGENT_COLOR, rect)
 
+
+
 # Function to get grid coordinates from mouse position
 def get_grid_position(mouse_pos):
     mouse_x, mouse_y = mouse_pos
@@ -36,6 +39,8 @@ def get_grid_position(mouse_pos):
     if 0 <= grid_x < ROWS and 0 <= grid_y < COLS:
         return grid_x, grid_y
     return None
+
+
 
 # Function to draw buttons
 #// Need to change 
@@ -55,7 +60,7 @@ def draw_wall(x, y):
     pygame.draw.rect(screen, Wall_Color, rect)
     walls.append((x, y))  # Add wall to the list
 
-
+#Draw room
 def draw_room(start_x, start_y, width, height):
     for x in range(start_x, start_x + width):
         draw_wall(start_y, x)  # Top wall
@@ -64,10 +69,7 @@ def draw_room(start_x, start_y, width, height):
         draw_wall(y, start_x)  # Left wall
         draw_wall(y, start_x + width - 1)  # Right wall
 
-
-
-
-
+#Wall/map build Tool
 def Draw_wall_horizontal(start_x, end_x, y_pos):
     for x in range(start_x, start_x + end_x):
         draw_wall(y_pos, x)
@@ -76,6 +78,7 @@ def Draw_wall_vertical(start_y, end_y, x_pos):
     for y in range(start_y, start_y + end_y):
         draw_wall(y, x_pos)  
 
-
+#Collision detection
 def is_collision(x, y):
     return (x, y) in walls
+

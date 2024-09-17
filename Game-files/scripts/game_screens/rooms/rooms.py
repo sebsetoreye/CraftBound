@@ -3,6 +3,9 @@ from scripts.game_screens.game_functions import *
 from scripts.game_screens.game_variables import *
 
 
+def dev_room():
+    draw_room(0, 0, 40, 15)
+
 def start_room():
     Draw_wall_horizontal(0, 18, 0)
     Draw_wall_horizontal(21, 40, 0)
@@ -31,7 +34,7 @@ def start_room():
     Draw_wall_horizontal(21, 40, 14)
 
 def room_1():
-    #draw_room(0, 0, 40, 15)
+
 
     #top of the room
     Draw_wall_horizontal(0, 17, 0)

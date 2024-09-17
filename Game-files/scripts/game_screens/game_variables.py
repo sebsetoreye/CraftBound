@@ -12,6 +12,7 @@ walls = []
 new_WINDOW_WIDTH = 800
 new_WINDOW_HEIGHT = 400
 
+ # Starting position of the agent
 
 
 # Colors
@@ -21,6 +22,8 @@ AGENT_COLOR = (255, 0, 0)
 BUTTON_COLOR = (100, 100, 100)
 BUTTON_CLICK_COLOR = (150, 150, 150)
 BUTTON_TEXT_COLOR = (255, 255, 255)
+A_COLOR = (255, 100, 0)
+
 
 Wall_Color = ( 255, 255, 255)
 
