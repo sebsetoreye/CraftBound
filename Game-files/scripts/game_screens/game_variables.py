@@ -8,6 +8,7 @@ COLS = 40
 CELL_SIZE = 20
 MARGIN_ROWS = 2  # Number of reserved rows at the top and bottom
 walls = []
+doors = []
 
 new_WINDOW_WIDTH = 800
 new_WINDOW_HEIGHT = 400

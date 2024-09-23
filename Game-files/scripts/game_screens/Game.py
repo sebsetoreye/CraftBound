@@ -2,13 +2,15 @@ import pygame
 import sys
 import random
 
-from .game_functions import *
-from .game_variables import *
-from .rooms.rooms import *
+from scripts.game_screens.game_functions import *
+from scripts.game_screens.game_variables import *
+from scripts.game_screens.rooms.rooms import *
 from scripts.Global.global_functions import *
 from scripts.Global.global_variables import *
 from scripts.Global.global_enemies import *
 from scripts.Global.global_player import *
+from scripts.Global.global_weapons import *
+from scripts.Global.weapons import *
 
 pygame.init()
 
@@ -39,10 +41,15 @@ def main():
         draw_player(player)
         draw_enemy(enemies)
 
-        # Move enemies towards the player every few frames
+# Move enemies every few frames
         if frame_counter % enemy_move_delay == 0:
-            for enemy in enemies:
-                move_enemy_towards_player(enemy, player)
+            move_all_enemies(enemies, player)
+
+        # Check for player collision with walls
+        if is_collision(player.x, player.y):
+            print("Player hit a wall!")
+
+        # Check for player collision with doors
 
         # Check if buttons are clicked
         mouse_pressed = pygame.mouse.get_pressed()
@@ -63,7 +70,7 @@ def main():
                 handle_player_movement(event, player)  # Separate function to handle movement
                 
                 if event.key == pygame.K_a:
-                    hit_enemy_with_sword(player, enemies)
+                    hit_enemy_with_weapon(player, enemies, sword)
 
 
             elif event.type == pygame.MOUSEBUTTONDOWN:

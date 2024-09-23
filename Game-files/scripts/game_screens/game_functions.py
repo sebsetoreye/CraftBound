@@ -7,9 +7,6 @@ from .game_variables import *
 from scripts.gui_screens.start_screen_files.start_screen_variables import *
 from scripts.Global.global_functions import *
 
-
-
-
 def change_screen_size():
     global screen
     screen = pygame.display.set_mode((new_WINDOW_WIDTH, new_WINDOW_HEIGHT))
@@ -41,7 +38,6 @@ def get_grid_position(mouse_pos):
     return None
 
 
-
 # Function to draw buttons
 #// Need to change 
 def draw_button(text, x, y, size, is_clicked):
@@ -53,12 +49,16 @@ def draw_button(text, x, y, size, is_clicked):
     screen.blit(text_render, text_rect)
 
 
-
 # Function to draw the wall
 def draw_wall(x, y):
     rect = pygame.Rect(y * CELL_SIZE, (x + MARGIN_ROWS) * CELL_SIZE, CELL_SIZE, CELL_SIZE)
     pygame.draw.rect(screen, Wall_Color, rect)
     walls.append((x, y))  # Add wall to the list
+
+def draw_door(x, y):
+    rect = pygame.Rect(y * CELL_SIZE, (x + MARGIN_ROWS) * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+    pygame.draw.rect(screen, Wall_Color, rect)
+    doors.append((x, y))  # Add wall to the list
 
 #Draw room
 def draw_room(start_x, start_y, width, height):
@@ -78,7 +78,18 @@ def Draw_wall_vertical(start_y, end_y, x_pos):
     for y in range(start_y, start_y + end_y):
         draw_wall(y, x_pos)  
 
+#Draw doors
+def Draw_door_horizontal(start_x, end_x, y_pos):
+    for x in range(start_x, start_x + end_x):
+        draw_door(y_pos, x)
+
+def Draw_door_vertical(start_y, end_y, x_pos):
+    for y in range(start_y, start_y + end_y):
+        draw_door(y, x_pos) 
+
 #Collision detection
 def is_collision(x, y):
     return (x, y) in walls
 
+def is_door_collision(x, y):
+    return (x, y) in doors
