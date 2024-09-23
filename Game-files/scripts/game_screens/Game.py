@@ -61,9 +61,16 @@ def main():
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 handle_player_movement(event, player)  # Separate function to handle movement
+                
+                if event.key == pygame.K_a:
+                    hit_enemy_with_sword(player, enemies)
+
+
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 handle_mouse_click(mouse_pos, button_quit_rect, button_b_rect)
+            
+            
 
         pygame.display.flip()  # Update the screen
         pygame.time.delay(100)  # Control the speed of movement

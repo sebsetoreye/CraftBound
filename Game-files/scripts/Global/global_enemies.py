@@ -17,6 +17,11 @@ class Enemy:
     def is_alive(self):
         return self.health > 0
     
+    def take_damage(self, amount):
+        self.health -= amount
+        if self.health < 0:
+            self.health = 0
+    
 
 # Function to draw all enemies
 def draw_enemy(enemies):
@@ -52,8 +57,11 @@ def move_enemy_towards_player(enemy, player):
     # Check for collision with the player
     if (new_enemy_x, new_enemy_y) == (player_x, player_y):
         print("Enemy hit player!")
-        enemy.health -= 10  # Reduce enemy health on collision with player
+        enemy.take_damage(10)
+        
         player.take_damage(5)  # Apply damage to the player instance
+        
+        print("Enemy health:", enemy.health)
         print("Player health:", player.health)
 
     # Check for collision with other enemies or obstacles
