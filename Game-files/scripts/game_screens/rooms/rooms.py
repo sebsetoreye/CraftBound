@@ -49,3 +49,38 @@ def room_1():
 
     #Floor
     Draw_wall_horizontal(0, 40, 15)
+
+def room_2():
+
+    #roof
+    Draw_wall_horizontal(0, 17, 0)
+    Draw_wall_horizontal(20, 40, 0)
+    #floor
+    Draw_wall_horizontal(0, 40, 14)
+    #left wall
+    Draw_wall_vertical(0, 15, 0)
+    #right wall
+    Draw_wall_vertical(0, 7, 39)
+    Draw_wall_vertical(10, 5, 39) 
+
+def room_3():
+    #roof
+    Draw_wall_horizontal(0, 4, 0)
+    Draw_wall_horizontal(4, 3, 0)
+    Draw_wall_horizontal(10, 3, 0)
+    Draw_wall_horizontal(16, 3, 0)
+    Draw_wall_horizontal(22, 3, 0)
+    Draw_wall_horizontal(28, 3, 0)
+    Draw_wall_horizontal(34, 6, 0)
+    #floor
+    Draw_wall_horizontal(0, 4, 14)
+    Draw_wall_horizontal(4, 3, 14)
+    Draw_wall_horizontal(10, 3, 14)
+    Draw_wall_horizontal(16, 3, 14)
+    Draw_wall_horizontal(22, 3, 14)
+    Draw_wall_horizontal(28, 3, 14)
+    Draw_wall_horizontal(34, 6, 14)
+    #walls
+    Draw_wall_vertical(0, 15, 0)
+    Draw_wall_vertical(0, 15, 39)
+
