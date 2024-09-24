@@ -36,6 +36,5 @@ BUTTON_WIDTH = 200 #Start screen
 BUTTON_HEIGHT = 50 #Start screen
 
 
-
 # Setup on clock
 clock = pygame.time.Clock()

@@ -1,6 +1,6 @@
 import pygame
 from scripts.game_screens.game_variables import CELL_SIZE, MARGIN_ROWS, COLS, ROWS
-from scripts.game_screens.game_functions import is_collision, screen, sys
+from scripts.game_screens.game_functions import is_collision, screen, sys, random_room, is_door_collision
 
 
 PLAYER_COLOR = (255, 100, 0)
@@ -30,29 +30,34 @@ def draw_player(player):
         rect = pygame.Rect(player.y * CELL_SIZE, (player.x + MARGIN_ROWS) * CELL_SIZE, CELL_SIZE, CELL_SIZE)
         pygame.draw.rect(screen, PLAYER_COLOR, rect)
 
-
 def handle_player_movement(event, player):
     new_x, new_y = player.x, player.y
 
     if event.key == pygame.K_LEFT:
-        new_y = max(0, player.y - 1)  # Move left (decrease y)
+        new_y = max(0, player.y - 1)
         player.direction = "left"
     elif event.key == pygame.K_RIGHT:
-        new_y = min(COLS - 1, player.y + 1)  # Move right (increase y)
+        new_y = min(COLS - 1, player.y + 1)
         player.direction = "right"
     elif event.key == pygame.K_UP:
-        new_x = max(0, player.x - 1)  # Move up (decrease x)
+        new_x = max(0, player.x - 1)
         player.direction = "up"
     elif event.key == pygame.K_DOWN:
-        new_x = min(ROWS - 1, player.x + 1)  # Move down (increase x)
+        new_x = min(ROWS - 1, player.x + 1)
+        player.direction = "down"
 
-    # Check for collisions with walls first
+    # Check for wall collisions
     if not is_collision(new_x, new_y):
-        player.x, player.y = new_x, new_y  # Update player position
+        player.x, player.y = new_x, new_y
     else:
-        print("Collision detected, cannot move!")  # Debug message for collision
+        print("Collision detected, cannot move!")
 
-    # Check for door collision after moving
+    # Check for door collisions
+    if is_door_collision(new_x, new_y):
+        print("Door collision detected, loading random room!")
+        return True  # Indicate that we need to load a new room
+
+    return False  # No room change
 
 def handle_mouse_click(mouse_pos, button_quit_rect):
     if button_quit_rect.collidepoint(mouse_pos):
