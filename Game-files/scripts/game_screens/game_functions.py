@@ -7,7 +7,6 @@ import random
 from .game_variables import *
 from scripts.gui_screens.start_screen_files.start_screen_variables import *
 from scripts.Global.global_functions import *
-
 background_image = pygame.image.load('Game-files/sprites/floor/floor.png')
 background_image = pygame.transform.scale(background_image, (new_WINDOW_WIDTH, new_WINDOW_HEIGHT))  # Scale it to the window size
 
@@ -21,10 +20,22 @@ def change_screen_size():
 def draw_grid():
     # Draw the background image
     screen.blit(background_image, (0, 0))  # Draw the image at the top-left corner
+    
+    # Create a transparent surface for the grid
+    grid_surface = pygame.Surface((new_WINDOW_WIDTH, new_WINDOW_HEIGHT), pygame.SRCALPHA)  # Create a surface with alpha
+
+    # Set your grid color with transparency (e.g., 50% transparent)
+    transparent_grid_color = (0, 0, 0, 0)  # RGB + Alpha (0-255)
+
+    # Draw grid rectangles on the transparent surface
     for x in range(0, new_WINDOW_WIDTH, CELL_SIZE):
         for y in range(MARGIN_ROWS * CELL_SIZE, (ROWS + MARGIN_ROWS) * CELL_SIZE, CELL_SIZE):
             rect = pygame.Rect(x, y, CELL_SIZE, CELL_SIZE)
-            pygame.draw.rect(screen, GRID_COLOR, rect, 1)
+            pygame.draw.rect(grid_surface, transparent_grid_color, rect, 1)  # Draw rectangle with transparency
+
+    # Blit the transparent grid surface onto the main screen
+    screen.blit(grid_surface, (0, 0))  # Draw the transparent grid on top of the background
+
 
 
 # Function to draw the agent/player
@@ -53,6 +64,7 @@ def draw_button(text, x, y, size, is_clicked):
     text_render = font.render(text, True, BUTTON_TEXT_COLOR)
     text_rect = text_render.get_rect(center=(x + size // 2, y + size // 2))
     screen.blit(text_render, text_rect)
+
 
 
 # Function to draw the wall

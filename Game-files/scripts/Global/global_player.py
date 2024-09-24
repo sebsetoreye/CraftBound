@@ -1,5 +1,5 @@
 import pygame
-from scripts.game_screens.game_variables import CELL_SIZE, MARGIN_ROWS, COLS, ROWS
+from scripts.game_screens.game_variables import CELL_SIZE, MARGIN_ROWS, COLS, ROWS, BUTTON_TEXT_COLOR
 from scripts.game_screens.game_functions import is_collision, screen, sys, random_room, is_door_collision
 
 
@@ -64,3 +64,16 @@ def handle_mouse_click(mouse_pos, button_quit_rect):
         print("Quit button clicked!")
         pygame.quit()
         sys.exit()
+
+
+
+
+def draw_health_display(player_health, x, y):
+    # Render the player's health text
+    font = pygame.font.SysFont(None, 24)
+    health_text = f'HP: {player_health}'  # Format health display
+    text_render = font.render(health_text, True, BUTTON_TEXT_COLOR)
+    text_rect = text_render.get_rect(topleft=(x, y))  # Position at (x, y)
+    
+    # Draw health text on the screen
+    screen.blit(text_render, text_rect)

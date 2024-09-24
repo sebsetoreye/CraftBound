@@ -103,4 +103,3 @@ def draw_enemy(enemies):
             # If the enemy is dead, you may keep it for death animations or effects
             print(f"Enemy at ({enemy.x}, {enemy.y}) is dead, removing it.")
             enemies.remove(enemy)
-

@@ -11,15 +11,12 @@ def draw_start_screen():
     screen.blit(start_background_image, (0, 0))  # Draw the image at the top-left corner
     
     # Render text
-    title_text = font.render('CraftBound', True, WHITE)  # Adding title text
     instruction_text = small_font.render('Press Enter to Start', True, WHITE)
     
     # Position title text
-    title_rect = title_text.get_rect(center=(Start_WINDOW_WIDTH / 2, Start_WINDOW_HEIGHT / 2 - 50))
-    instruction_rect = instruction_text.get_rect(center=(Start_WINDOW_WIDTH / 2, Start_WINDOW_HEIGHT / 2 + 50))
+    instruction_rect = instruction_text.get_rect(center=(Start_WINDOW_WIDTH / 2, Start_WINDOW_HEIGHT / 2 + 130))
     
     # Draw text on the screen
-    screen.blit(title_text, title_rect)
     screen.blit(instruction_text, instruction_rect)
     
     pygame.display.flip()
