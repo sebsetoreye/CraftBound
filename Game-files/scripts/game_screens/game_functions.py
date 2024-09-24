@@ -38,6 +38,7 @@ def draw_grid():
 
 
 
+
 # Function to draw the agent/player
 def draw_agent(x, y):
     rect = pygame.Rect(y * CELL_SIZE, (x + MARGIN_ROWS) * CELL_SIZE, CELL_SIZE, CELL_SIZE)
@@ -57,13 +58,6 @@ def get_grid_position(mouse_pos):
 
 # Function to draw buttons
 #// Need to change 
-def draw_button(text, x, y, size, is_clicked):
-    color = BUTTON_CLICK_COLOR if is_clicked else BUTTON_COLOR
-    pygame.draw.rect(screen, color, (x, y, size, size))
-    font = pygame.font.SysFont(None, 24)
-    text_render = font.render(text, True, BUTTON_TEXT_COLOR)
-    text_rect = text_render.get_rect(center=(x + size // 2, y + size // 2))
-    screen.blit(text_render, text_rect)
 
 
 

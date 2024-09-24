@@ -6,6 +6,8 @@ from scripts.game_screens.game_functions import *
 from scripts.Global.global_variables import *
 from scripts.Global.global_player import Player
 
+
+
 # Base Enemy class to manage position, health, and movement
 class Enemy:
     def __init__(self, x, y, health=100, damage=10):
@@ -94,9 +96,10 @@ def draw_enemy(enemies):
             rect = pygame.Rect(enemy.y * CELL_SIZE, (enemy.x + MARGIN_ROWS) * CELL_SIZE, CELL_SIZE, CELL_SIZE)
             pygame.draw.rect(screen, color, rect)
         else:
-            # If the enemy is dead, you may keep it for death animations or effects
-            print(f"Enemy at ({enemy.x}, {enemy.y}) is dead, removing it.")
+            # If the enemy is dead, increase the score and remove the enemy
             enemies.remove(enemy)
+
+
 
 def reset_enemies():
     enemies.clear()  # Clear existing enemies

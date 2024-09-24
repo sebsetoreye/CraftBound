@@ -11,13 +11,12 @@ from scripts.Global.global_player import *
 from scripts.Global.global_weapons import *
 from scripts.Global.weapons import *
 
-pygame.init()
 def main():
+
+    
     change_screen_size()
     frame_counter = 0
 
-    # Button positions
-    button_quit_rect = pygame.Rect(new_WINDOW_WIDTH - BUTTON_SIZE * 2 - 10, 5, BUTTON_SIZE, BUTTON_SIZE)
 
     # Initialize the player at a specific position
     player = Player(x=7, y=19)
@@ -33,6 +32,7 @@ def main():
         # Clear the screen and draw the grid
         draw_grid()
         frame_counter += 1
+        #draw_score(score, 100, 5)  # Draw the current score
 
         # Draw the current room
         current_room()  # Draw the current room walls and doors
@@ -60,6 +60,7 @@ def main():
                     print("Room changed, loading new random room!")
                     current_room = random_room()  # Load a random room
                     load_room(current_room)  # Set up the new room
+                    player.x, player.y = 7, 19
                     reset_enemies()  # Spawn random enemies for the new room
 
                 # Attack an enemy
@@ -74,14 +75,6 @@ def main():
         # Move enemies every few frames
         if frame_counter % enemy_move_delay == 0:
             move_all_enemies(enemies, player)
-
-        # Check if buttons are clicked
-        mouse_pressed = pygame.mouse.get_pressed()
-        mouse_pos = pygame.mouse.get_pos()
-        is_button_quit_clicked = button_quit_rect.collidepoint(mouse_pos) and mouse_pressed[0]
-
-        # Display buttons with click feedback
-        draw_button('Quit', button_quit_rect.x, button_quit_rect.y, BUTTON_SIZE, is_button_quit_clicked)
 
         pygame.display.flip()  # Update the screen
         pygame.time.delay(100)  # Control the speed of movement
