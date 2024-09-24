@@ -75,7 +75,7 @@ def draw_wall(x, y):
 
 def draw_door(x, y):
     rect = pygame.Rect(y * CELL_SIZE, (x + MARGIN_ROWS) * CELL_SIZE, CELL_SIZE, CELL_SIZE)
-    pygame.draw.rect(screen, Wall_Color, rect)
+    pygame.draw.rect(screen, Door_Color, rect)
     doors.append((x, y))  # Add wall to the list
 
 #Draw room
@@ -126,7 +126,7 @@ def load_room(room_function):
     walls.clear()  # Clear existing walls
     doors.clear()  # Clear existing doors
     room_function()
-
+    pygame.display.flip()
 
 def dev_room():
     draw_room(0, 0, 40, 15)
@@ -134,6 +134,7 @@ def dev_room():
 
 def start_room():
     Draw_wall_horizontal(0, 18, 0)
+    Draw_door_horizontal(18, 20, 0)
     Draw_wall_horizontal(21, 40, 0)
     Draw_wall_horizontal(0, 18, 1)
     Draw_wall_horizontal(21, 40, 1)
@@ -146,6 +147,9 @@ def start_room():
     Draw_wall_horizontal(0, 17, 5)
     Draw_wall_horizontal(22, 40, 5)
 
+    Draw_door_vertical(6, 8, 0)
+    Draw_door_vertical(6, 8, 39)
+
     Draw_wall_horizontal(0, 17, 9)
     Draw_wall_horizontal(22, 40, 9)
     Draw_wall_horizontal(0, 18, 10)
@@ -157,6 +161,7 @@ def start_room():
     Draw_wall_horizontal(0, 18, 13)
     Draw_wall_horizontal(21, 40, 13)
     Draw_wall_horizontal(0, 18, 14)
+    Draw_door_horizontal(18, 20, 14)
     Draw_wall_horizontal(21, 40, 14)
 
 def room_1():
@@ -164,10 +169,12 @@ def room_1():
 
     #top of the room
     Draw_wall_horizontal(0, 17, 0)
+    Draw_door_horizontal(17, 19, 0)
     Draw_wall_horizontal(20, 40, 0)
 
     #Left wall
     Draw_wall_vertical(0, 7, 0)
+    Draw_door_vertical(7, 3, 0)
     Draw_wall_vertical(10, 5, 0)
 
     #Right wall
@@ -180,31 +187,43 @@ def room_2():
 
     #roof
     Draw_wall_horizontal(0, 17, 0)
-    Draw_wall_horizontal(20, 40, 0)
+    Draw_door_horizontal(16, 4, 0)
+    Draw_wall_horizontal(20, 39, 0)
     #floor
-    Draw_wall_horizontal(0, 40, 14)
+    Draw_wall_horizontal(0, 39, 14)
     #left wall
     Draw_wall_vertical(0, 15, 0)
     #right wall
     Draw_wall_vertical(0, 7, 39)
+    Draw_door_vertical(7, 3, 39)
     Draw_wall_vertical(10, 5, 39) 
 
 def room_3():
     #roof
     Draw_wall_horizontal(0, 4, 0)
     Draw_wall_horizontal(4, 3, 0)
+    Draw_door_horizontal(7, 3, 0)
     Draw_wall_horizontal(10, 3, 0)
+    Draw_door_horizontal(13, 3, 0)
     Draw_wall_horizontal(16, 3, 0)
+    Draw_door_horizontal(19, 3, 0)
     Draw_wall_horizontal(22, 3, 0)
+    Draw_door_horizontal(25, 3, 0)
     Draw_wall_horizontal(28, 3, 0)
+    Draw_door_horizontal(31, 3, 0)
     Draw_wall_horizontal(34, 6, 0)
     #floor
     Draw_wall_horizontal(0, 4, 14)
     Draw_wall_horizontal(4, 3, 14)
+    Draw_door_horizontal(7, 3, 14)
     Draw_wall_horizontal(10, 3, 14)
+    Draw_door_horizontal(13, 3, 14)
     Draw_wall_horizontal(16, 3, 14)
+    Draw_door_horizontal(19, 3, 14)
     Draw_wall_horizontal(22, 3, 14)
+    Draw_door_horizontal(25, 3, 14)
     Draw_wall_horizontal(28, 3, 14)
+    Draw_door_horizontal(31, 3, 14)
     Draw_wall_horizontal(34, 6, 14)
     #walls
     Draw_wall_vertical(0, 15, 0)

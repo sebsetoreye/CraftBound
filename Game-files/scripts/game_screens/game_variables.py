@@ -27,6 +27,7 @@ A_COLOR = (255, 100, 0)
 
 
 Wall_Color = ( 255, 255, 255)
+Door_Color = (0,0,0)
 
 
 # Button dimensions

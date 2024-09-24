@@ -1,12 +1,10 @@
 import pygame
+import random
 from scripts.game_screens.game_variables import *
 from scripts.gui_screens.start_screen_files.start_screen_variables import *
 from scripts.game_screens.game_functions import *
 from scripts.Global.global_variables import *
 from scripts.Global.global_player import Player
-import random
-import pygame
-
 
 # Base Enemy class to manage position, health, and movement
 class Enemy:
@@ -66,12 +64,11 @@ class FastEnemy(Enemy):
 class TankEnemy(Enemy):
     def __init__(self, x, y, health=200, damage=20):
         super().__init__(x, y, health, damage)
-    
+
     # Could include slower movement or movement with additional checks if needed
     def move_towards_player(self, player, enemies):
         # Move every other turn (or custom logic for slow movement)
         super().move_towards_player(player, enemies)
-
 
 # Collision function that excludes dead enemies
 def is_enemy_collision(x, y, enemies):
@@ -81,8 +78,6 @@ def is_enemy_collision(x, y, enemies):
 def move_all_enemies(enemies, player):
     for enemy in enemies:
         enemy.move_towards_player(player, enemies)
-  
-
 
 def draw_enemy(enemies):
     for enemy in enemies[:]:
@@ -92,7 +87,6 @@ def draw_enemy(enemies):
                 color = (255, 0, 0)  # Red for FastEnemy
             elif isinstance(enemy, TankEnemy):
                 color = (0, 255, 0)  # Green for TankEnemy
-
             else:
                 color = AGENT_COLOR  # Default color for base Enemy
             
@@ -103,3 +97,15 @@ def draw_enemy(enemies):
             # If the enemy is dead, you may keep it for death animations or effects
             print(f"Enemy at ({enemy.x}, {enemy.y}) is dead, removing it.")
             enemies.remove(enemy)
+
+def reset_enemies():
+    enemies.clear()  # Clear existing enemies
+    enemy_classes = [Enemy, FastEnemy, TankEnemy]  # List of enemy classes to choose from
+
+    # Reinitialize enemies based on the new room specifics
+    for _ in range(3):  # Example: spawn 3 random enemies in the new room
+        enemy_class = random.choice(enemy_classes)  # Randomly select an enemy class
+        # Create a new enemy at random positions (make sure they are valid positions)
+        x = random.randint(0, ROWS - 1)
+        y = random.randint(0, COLS - 1)
+        enemies.append(enemy_class(x, y))  # Instantiate and add the new enemy
